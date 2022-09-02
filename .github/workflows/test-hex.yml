@@ -1,0 +1,27 @@
+name: Testing Hex
+
+on: [push]
+
+jobs:
+  make-testing:
+    name: Checking hex.py
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checking out repository
+        uses: actions/checkout@v2
+
+      - name: "Installing Python"
+        uses: actions/setup-python@v2
+        with:
+          python-version: "3.10"
+    
+      - name: Running hex encoding of "foobar"
+        run: |
+          [ `echo 0x660x6f0x6f0x620x610x72` == `python3 src/hex.py encode foobar` ]
+        shell: bash
+        
+      - name: Running hex decoding of "0x660x6f0x6f0x620x610x72"
+        run: |
+          [ `echo foobar` == `python3 src/hex.py decode 0x660x6f0x6f0x620x610x72` ]
+        shell: bash
+  

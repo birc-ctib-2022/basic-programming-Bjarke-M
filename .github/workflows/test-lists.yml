@@ -1,0 +1,31 @@
+name: Testing Lists
+
+on: [push]
+
+jobs:
+  make-testing:
+    name: Checking lists.py
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checking out repository
+        uses: actions/checkout@v2
+
+      - name: "Installing Python"
+        uses: actions/setup-python@v2
+        with:
+          python-version: "3.10"
+    
+      - name: Running lists.py mean
+        run: |
+          diff <(echo 3.0) <(echo 1 2 3 4 5 | python3 src/lists.py mean)
+        shell: bash
+
+      - name: Running lists.py times
+        run: |
+          diff <(echo 3 6 9 12 15) <(echo 1 2 3 4 5 | python3 src/lists.py times)
+        shell: bash
+
+      - name: Running lists.py even
+        run: |
+          diff <(echo 2 4) <(echo 1 2 3 4 5 | python3 src/lists.py even)
+        shell: bash

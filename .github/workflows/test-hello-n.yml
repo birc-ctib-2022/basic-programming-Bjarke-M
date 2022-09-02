@@ -1,0 +1,46 @@
+name: Testing hello-n.py
+
+on: [push]
+
+jobs:
+  make-testing:
+    name: Checking hello-n.py
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checking out repository
+        uses: actions/checkout@v2
+
+      - name: "Installing Python"
+        uses: actions/setup-python@v2
+        with:
+          python-version: "3.10"
+    
+      - name: Checking n == 0
+        run: |
+          diff <(echo -n "How many times should I loop? ") \
+               <(echo 0 | python3 src/hello-n.py)
+        shell: bash
+
+      - name: Checking n == 1
+        run: |
+          diff <(cat <<EOF
+          How many times should I loop? Hello, World!
+          EOF) <(echo 1 | python3 src/hello-n.py)
+        shell: bash
+
+      - name: Checking n == 2
+        run: |
+          diff <(cat <<EOF
+          How many times should I loop? Hello, World!
+          Hello, World!
+          EOF) <(echo 2 | python3 src/hello-n.py)
+        shell: bash
+
+      - name: Checking n == 3
+        run: |
+          diff <(cat <<EOF
+          How many times should I loop? Hello, World!
+          Hello, World!
+          Hello, World!
+          EOF) <(echo 3 | python3 src/hello-n.py)
+        shell: bash
