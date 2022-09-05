@@ -15,14 +15,12 @@ match command:
         y=[]
         for i in x:
             y.append(hex(ord(i)))
-        encoding = ""
-        encoding.join(y)
+        encoding = "".join(y)
         print(encoding)
 
     case "decode":
         hexsplit=x.split('0x')
         hexlist=[i != '0x' for i in hexsplit]
         translation=[int(i,base=16) for i in hexlist]
-        decoding = ""
-        decoding.join(translation)
+        decoding = "".join(translation)
         print(decoding)

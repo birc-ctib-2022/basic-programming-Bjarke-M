@@ -23,7 +23,7 @@ for i in password:
         character+=1
     if 8<len(password)<16:
         length+=1
-if upper and lower and nummeric and character and length != 0:
-    is_valid = True
-    
+    if upper and lower and nummeric and character and length != 0:
+        is_valid = True
+
 print(is_valid)
