@@ -58,7 +58,7 @@ match sys.argv[1]:
         # Put your solution to the third exercise here
         even = []
         for i in x:
-            if x%2==0:
+            if i%2==0:
                 even.append(i)
         print_list(even)
 
