@@ -1,4 +1,12 @@
 
 # Print the pattern
-for i in range(5):
-    print(i+1)
+emptystr=''
+for i in range(10):
+    if i<5:
+        emptystr+=' *'
+        print(emptystr)
+    elif len(emptystr)-2!=0:
+        emptystr=emptystr[:len(emptystr)-2]
+        print(emptystr)
+    else:
+        break
