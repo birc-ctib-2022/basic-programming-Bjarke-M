@@ -11,19 +11,19 @@ password = sys.argv[1]
 is_valid = False
 
 # Do all the requirement checks here.
+is_valid= False
+upper,lower,numeric,character= False,False,False,False
 for i in password:
-    upper, lower, nummeric, character, length=0,0,0,0,0
-    if i.isupper()==True:
-        upper=+1
-    if i.islower()==True:
-        lower+=1
-    if i.isnumeric()==True:
-        nummeric+=1
-    if i in ['$#@']:
-        character+=1
-    if 8<len(password)<16:
-        length+=1
-    if upper and lower and nummeric and character and length != 0:
-        is_valid = True
+    if not 8<=len(password)<=16:
+        break
+    if not upper:
+        upper=i.isupper()
+    if not lower:
+        lower=i.islower()
+    if not numeric:
+        numeric=i.isnumeric()
+    if not character:
+        character= i in ['$','#','@']
 
+is_valid=all([upper,lower,numeric,character])
 print(is_valid)
