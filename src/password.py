@@ -14,7 +14,7 @@ is_valid = False
 is_valid= False
 upper,lower,numeric,character= False,False,False,False
 for i in password:
-    if not 8<=len(password)<=16:
+    if not 6<=len(password)<=16:
         break
     if not upper:
         upper=i.isupper()
