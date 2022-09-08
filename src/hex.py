@@ -10,13 +10,19 @@ if len(sys.argv) != 3:
 
 command, x = sys.argv[1:3]
 
+# Dosent work at the moment... at all soo dont look (sorry)
 match command:
     case "encode":
-        # Implement the encoding here
-        encoding = ""
+        y=[]
+        for i in x:
+            y.append(hex(ord(i)))
+        encoding = "".join(y)
         print(encoding)
 
     case "decode":
-        # Implement the decoding here
-        decoding = ""
+        hexsplit=x.split('0x')
+        hexlist=[i for i in hexsplit if i!='']
+        underlying_nr=[int(i,base=16) for i in hexlist]
+        translation=[chr(i) for i in underlying_nr]
+        decoding = "".join(translation)
         print(decoding)
